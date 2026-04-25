@@ -343,14 +343,22 @@
             const formData = new FormData(form);
             
             const data = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                company: formData.get('company'),
-                auditType: auditType,
-                amount: amount,
+                'form-name': 'audit-submission',
+                'name': formData.get('name'),
+                'email': formData.get('email'),
+                'company': formData.get('company'),
+                'audit-type': auditType,
+                'amount': amount,
             };
 
             try {
+                // Submit to Netlify Forms
+                await fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(data).toString(),
+                });
+
                 // Create Stripe Checkout Session
                 const response = await fetch('/.netlify/functions/create-checkout-session', {
                     method: 'POST',
@@ -380,6 +388,15 @@
             handleFormSubmit(e, 'deep', 2000);
         });
     </script>
+
+    <!-- Hidden form for Netlify Forms detection -->
+    <form name="audit-submission" netlify style="display:none;">
+        <input type="text" name="name" />
+        <input type="email" name="email" />
+        <input type="text" name="company" />
+        <input type="hidden" name="audit-type" />
+        <input type="hidden" name="amount" />
+    </form>
 
     <meta name="stripe-key" content="pk_test_51TJeUuHgkrQ9hVyorYokKb2DiNqU6p7YHw97N4VDBlFl6z7jy5Su61bMBaZGJAmVN8tNFbZzpzkGJAlx5IgkbT3T00naKd6xi0">
     <script src="https://js.stripe.com/v3/"></script>
