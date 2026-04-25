@@ -1338,6 +1338,48 @@ RESULT: Model hangs, times out, or crashes</div>
             window.scrollTo(0, 0);
         }
 
+        // Handle Stripe payment redirect return
+        async function handlePaymentReturn() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const paymentSuccess = urlParams.get('payment') === 'success';
+            
+            if (!paymentSuccess) return;
+
+            const savedData = localStorage.getItem('auditFormData');
+            if (!savedData) return;
+
+            try {
+                const data = JSON.parse(savedData);
+                
+                // Submit form to backend
+                const response = await fetch('/.netlify/functions/submit-audit-form', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                if (response.ok) {
+                    localStorage.removeItem('auditFormData');
+                    
+                    // Hide form and show success message
+                    const form = document.getElementById('audit-form');
+                    const successMsg = document.getElementById('success-message');
+                    
+                    if (form) form.style.display = 'none';
+                    if (successMsg) successMsg.style.display = 'block';
+                    
+                    // Clean URL
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                }
+            } catch (error) {
+                console.error('Payment return error:', error);
+            }
+        }
+
+        // Check for payment return on page load
+        document.addEventListener('DOMContentLoaded', handlePaymentReturn);
+
+        // Form submission handler
         document.getElementById('audit-form').addEventListener('submit', async (e) => {
             e.preventDefault();
 
@@ -1351,10 +1393,9 @@ RESULT: Model hangs, times out, or crashes</div>
                 scope: formData.get('scope')
             };
 
-            // Store form data in sessionStorage (will be submitted after successful payment)
-            sessionStorage.setItem('auditFormData', JSON.stringify(data));
+            // Save form data to localStorage BEFORE redirect
+            localStorage.setItem('auditFormData', JSON.stringify(data));
 
-            // Create Stripe session (form only submitted if payment succeeds)
             const scopePrices = {
                 'quick': '500',
                 'standard': '2500',
@@ -1363,61 +1404,36 @@ RESULT: Model hangs, times out, or crashes</div>
 
             const amount = scopePrices[data.scope] || '500';
 
-            const response = await fetch('/.netlify/functions/create-checkout-session', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    amount: parseInt(amount),
-                    email: data.email,
-                    name: data.name,
-                    company: data.company,
-                    system: data.system,
-                    scope: data.scope
-                })
-            });
+            try {
+                const response = await fetch('/.netlify/functions/create-checkout-session', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        amount: parseInt(amount),
+                        email: data.email,
+                        name: data.name,
+                        company: data.company,
+                        system: data.system,
+                        scope: data.scope
+                    })
+                });
 
-            const session = await response.json();
+                const session = await response.json();
 
-            if (session.sessionId) {
-                const result = await stripe.redirectToCheckout({ sessionId: session.sessionId });
-                if (result.error) {
-                    alert('Error: ' + result.error.message);
-                }
-            } else {
-                alert('Error creating checkout session');
-            }
-        });
-
-        // On page load, if returning from successful payment, submit form data
-        document.addEventListener('DOMContentLoaded', async () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const paymentSuccess = urlParams.get('payment') === 'success';
-            const formData = sessionStorage.getItem('auditFormData');
-            
-            if (paymentSuccess && formData) {
-                try {
-                    const data = JSON.parse(formData);
-                    // Submit to Netlify Forms via our function
-                    const response = await fetch('/.netlify/functions/submit-audit-form', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(data)
-                    });
-                    
-                    if (response.ok) {
-                        sessionStorage.removeItem('auditFormData');
-                        // Switch to contact tab to show success message
-                        document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-                        document.getElementById('contact').classList.add('active');
-                        // Show success message
-                        document.getElementById('success-message').style.display = 'block';
-                        document.getElementById('audit-form').style.display = 'none';
-                        // Clean up URL
-                        window.history.replaceState({}, document.title, window.location.pathname);
+                if (session.sessionId) {
+                    const result = await stripe.redirectToCheckout({ sessionId: session.sessionId });
+                    if (result.error) {
+                        alert('Error: ' + result.error.message);
+                        localStorage.removeItem('auditFormData');
                     }
-                } catch (err) {
-                    console.error('Form data submission error:', err);
+                } else {
+                    alert('Error creating checkout session');
+                    localStorage.removeItem('auditFormData');
                 }
+            } catch (error) {
+                console.error('Checkout error:', error);
+                alert('Error: ' + error.message);
+                localStorage.removeItem('auditFormData');
             }
         });
     </script>
