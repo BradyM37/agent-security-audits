@@ -1178,7 +1178,7 @@ RESULT: Model hangs, times out, or crashes</div>
                     <strong>✓ Payment successful!</strong> Your audit request has been received. We'll begin testing immediately and send your detailed report within 24 hours.
                 </div>
 
-                <form id="audit-form" name="audit">
+                <form id="audit-form" name="audit" netlify>
                     <div class="form-group">
                         <label for="name">Full Name</label>
                         <input type="text" id="name" name="name" required>
@@ -1326,21 +1326,27 @@ RESULT: Model hangs, times out, or crashes</div>
             if (paymentSuccess && formData) {
                 try {
                     const data = JSON.parse(formData);
-                    await fetch('/', {
+                    // Submit to Netlify Forms via our function
+                    const response = await fetch('/.netlify/functions/submit-audit-form', {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                        body: new URLSearchParams(Object.entries(data))
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
                     });
-                    sessionStorage.removeItem('auditFormData');
-                    // Switch to contact tab to show success message
-                    switchTab('contact');
-                    // Show success message
-                    document.getElementById('success-message').style.display = 'block';
-                    document.getElementById('audit-form').style.display = 'none';
-                    // Clean up URL
-                    window.history.replaceState({}, document.title, window.location.pathname);
+                    
+                    if (response.ok) {
+                        sessionStorage.removeItem('auditFormData');
+                        // Switch to contact tab to show success message
+                        switchTab('contact');
+                        // Show success message
+                        document.getElementById('success-message').style.display = 'block';
+                        document.getElementById('audit-form').style.display = 'none';
+                        // Clean up URL
+                        window.history.replaceState({}, document.title, window.location.pathname);
+                    } else {
+                        console.error('Form submission failed');
+                    }
                 } catch (err) {
-                    console.log('Form data submission error:', err);
+                    console.error('Form data submission error:', err);
                 }
             }
         });
