@@ -18,6 +18,16 @@ exports.handler = async (event) => {
       'comprehensive': 'Comprehensive Review'
     };
 
+    // Build detailed description
+    let description = '';
+    if (scope === 'quick') {
+      description = '10+ test vectors · 24-hour turnaround · Focused vulnerability scan';
+    } else if (scope === 'standard') {
+      description = '30+ test vectors · 24-hour turnaround · Full attack surface testing · CVSS scoring · Remediation roadmap';
+    } else if (scope === 'comprehensive') {
+      description = '50+ test vectors · 48-hour turnaround · Multi-model testing · Architecture recommendations · Post-remediation testing';
+    }
+
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [
@@ -25,8 +35,8 @@ exports.handler = async (event) => {
           price_data: {
             currency: 'usd',
             product_data: {
-              name: `PromptGuard - ${scopeNames[scope] || 'AI Security Audit'}`,
-              description: `Security audit for ${system || 'AI system'}`,
+              name: `PromptGuard AI Security Audit`,
+              description: `${scopeNames[scope] || 'Audit'} for ${system || 'AI system'} — ${description}`,
             },
             unit_amount: amount * 100,
           },
