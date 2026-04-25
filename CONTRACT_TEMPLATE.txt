@@ -4,7 +4,7 @@ This Agreement ("Agreement") is entered into as of [DATE] ("Effective Date")
 
 BETWEEN:
 
-PromptGuard (hereinafter "Service Provider")
+PromptGuard LLC, a limited liability company registered in Alabama, with principal place of business at [BUSINESS ADDRESS] (hereinafter "Service Provider")
 
 AND:
 
@@ -25,6 +25,37 @@ The Service Provider agrees to conduct a comprehensive security audit of the Cli
 - System architecture and configuration review
 
 The specific audit tier selected determines the depth and duration of testing (see Section 2).
+
+
+1.1 ACCESS AND TESTING BOUNDARIES
+
+TESTING ENVIRONMENT:
+
+- Preferred environment: Staging/non-production systems only
+- Service Provider will not test against production systems without explicit written approval
+- If production access is provided, Service Provider will use read-only access only
+
+TESTING SCOPE:
+
+- Service Provider will conduct non-destructive testing only
+- No data deletion or modification will be performed
+- No attempts to impact system availability or performance
+- No attempts to access systems outside the defined scope
+
+CREDENTIALS AND ACCESS:
+
+- Client will provide the minimum necessary access required for testing
+- Service Provider will use only credentials explicitly provided by Client
+- Service Provider will not attempt to escalate privileges beyond provided access level
+- Service Provider will not share, store after audit completion, or use credentials for any purpose other than this audit
+- All credentials will be securely deleted immediately upon audit completion
+
+PROHIBITED TESTING:
+
+- No testing against third-party systems or services without explicit written consent
+- No attempts to disrupt system operations
+- No attempts to access data beyond the defined audit scope
+- No attempts to impact other systems or users
 
 
 2. AUDIT TIERS AND DELIVERABLES
@@ -86,9 +117,17 @@ Late Payment: If payment is not received within 7 days of invoice, Service Provi
 ASSESSMENT TIMELINE:
 
 1. Payment received -> Audit begins same business day
-2. Testing phase: [DURATION] hours over [DAYS] days
+2. Testing phase: [DURATION] hours over [DAYS] calendar days
 3. Report generation and compilation
-4. Final report delivery: [TURNAROUND TIME]
+4. Final report delivery: Within [X] business days of audit completion
+
+GUARANTEED DELIVERY:
+
+For Quick Assessment: Final report delivered within 2 business days of audit completion
+For Standard Audit: Final report delivered within 3 business days of audit completion  
+For Comprehensive Review: Final report delivered within 5 business days of audit completion
+
+If the Service Provider does not deliver the final report within these timeframes without Client-caused delays, Client may receive a 10% refund of the audit fee.
 
 FINAL DELIVERABLES:
 
@@ -255,7 +294,7 @@ Amendments to this Agreement must be made in writing and signed by both parties.
 
 GOVERNING LAW
 
-This Agreement shall be governed by and construed in accordance with the laws of [STATE/COUNTRY], without regard to conflict of law principles.
+This Agreement shall be governed by and construed in accordance with the laws of the State of Alabama, without regard to conflict of law principles. Both parties consent to the exclusive jurisdiction of the courts located in Alabama.
 
 
 SEVERABILITY
@@ -328,13 +367,13 @@ CUSTOMIZATION NOTES:
 
 1. [DATE] - Fill in the date the contract is signed
 2. [CLIENT NAME] - Company/individual name
-3. [AMOUNT] - Total payment ($500, $2,500, or $7,500)
-4. [AUDIT TIER] - Quick Assessment, Standard Audit, or Comprehensive Review
-5. [DURATION] - Hours for the tier (20, 40, or 60+)
-6. [DAYS] - Approximate calendar days (1-2 for quick, 2-3 for standard, 3-5 for comprehensive)
-7. [TURNAROUND TIME] - "24 hours", "40 hours", etc.
-8. [RATE]/hour - Hourly rate for additional testing (recommend $150-250/hr)
-9. [STATE/COUNTRY] - Your jurisdiction
+3. [BUSINESS ADDRESS] - Your physical business address (e.g., "123 Main St, Montgomery, AL 36104")
+4. [AMOUNT] - Total payment ($500, $2,500, or $7,500)
+5. [AUDIT TIER] - Quick Assessment, Standard Audit, or Comprehensive Review
+6. [DURATION] - Hours for the tier (20, 40, or 60+)
+7. [DAYS] - Approximate calendar days (1-2 for quick, 2-3 for standard, 3-5 for comprehensive)
+8. [X] - Business days for delivery (2 for Quick, 3 for Standard, 5 for Comprehensive)
+9. [RATE]/hour - Hourly rate for additional testing (recommend $150-250/hr)
 10. [AUTO-FILLED] - Will be the date of payment/signature
 11. Client to fill in Section 13 with their system details
 
