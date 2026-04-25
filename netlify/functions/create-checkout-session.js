@@ -45,7 +45,7 @@ exports.handler = async (event) => {
       ],
       customer_email: email,
       mode: 'payment',
-      success_url: `https://prompt-guard.netlify.app/#contact`,
+      success_url: `https://prompt-guard.netlify.app/?payment=success`,
       cancel_url: `https://prompt-guard.netlify.app/#contact`,
       metadata: {
         scope,

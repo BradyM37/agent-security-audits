@@ -1174,6 +1174,10 @@ RESULT: Model hangs, times out, or crashes</div>
             <p style="text-align: center; margin-bottom: 40px; font-size: 16px;">Get a comprehensive security assessment of your AI agent system. Our team will identify vulnerabilities and provide actionable recommendations.</p>
             
             <div style="max-width: 700px; margin: 0 auto;">
+                <div id="success-message" style="display: none; padding: 20px; background: #e8f5e9; border-left: 4px solid #4caf50; border-radius: 4px; color: #2e7d32; margin-bottom: 30px;">
+                    <strong>✓ Payment successful!</strong> Your audit request has been received. We'll begin testing immediately and send your detailed report within 24 hours.
+                </div>
+
                 <form id="audit-form" name="audit">
                     <div class="form-group">
                         <label for="name">Full Name</label>
@@ -1276,18 +1280,10 @@ RESULT: Model hangs, times out, or crashes</div>
                 scope: formData.get('scope')
             };
 
-            // Submit to Netlify Forms
-            try {
-                await fetch('/', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: new URLSearchParams(Object.entries(data))
-                });
-            } catch (err) {
-                console.log('Form submitted');
-            }
+            // Store form data in sessionStorage (will be submitted after successful payment)
+            sessionStorage.setItem('auditFormData', JSON.stringify(data));
 
-            // Create Stripe session
+            // Create Stripe session (form only submitted if payment succeeds)
             const scopePrices = {
                 'quick': '500',
                 'standard': '2500',
@@ -1318,6 +1314,34 @@ RESULT: Model hangs, times out, or crashes</div>
                 }
             } else {
                 alert('Error creating checkout session');
+            }
+        });
+
+        // On page load, if returning from successful payment, submit form data
+        window.addEventListener('load', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const paymentSuccess = urlParams.get('payment') === 'success';
+            const formData = sessionStorage.getItem('auditFormData');
+            
+            if (paymentSuccess && formData) {
+                try {
+                    const data = JSON.parse(formData);
+                    await fetch('/', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: new URLSearchParams(Object.entries(data))
+                    });
+                    sessionStorage.removeItem('auditFormData');
+                    // Switch to contact tab to show success message
+                    switchTab('contact');
+                    // Show success message
+                    document.getElementById('success-message').style.display = 'block';
+                    document.getElementById('audit-form').style.display = 'none';
+                    // Clean up URL
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                } catch (err) {
+                    console.log('Form data submission error:', err);
+                }
             }
         });
     </script>
