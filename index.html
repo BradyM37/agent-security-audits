@@ -1420,12 +1420,9 @@ RESULT: Model hangs, times out, or crashes</div>
 
                 const session = await response.json();
 
-                if (session.sessionId) {
-                    const result = await stripe.redirectToCheckout({ sessionId: session.sessionId });
-                    if (result.error) {
-                        alert('Error: ' + result.error.message);
-                        localStorage.removeItem('auditFormData');
-                    }
+                if (session.url) {
+                    // Redirect to Stripe checkout
+                    window.location.href = session.url;
                 } else {
                     alert('Error creating checkout session');
                     localStorage.removeItem('auditFormData');
