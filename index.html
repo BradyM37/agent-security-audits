@@ -743,13 +743,13 @@
             <div class="header-content">
                 <div class="logo">Prompt<span>Guard</span></div>
                 <nav>
-                    <a class="tab-link active" href="#home">Home</a>
-                    <a class="tab-link" href="#about">About Us</a>
-                    <a class="tab-link" href="#methodology">Methodology</a>
-                    <a class="tab-link" href="#services">Services</a>
-                    <a class="tab-link" href="#pricing">Pricing</a>
-                    <a class="tab-link" href="#contact">Contact</a>
-                    <a href="#contact" class="btn-primary" style="text-decoration: none; color: white; display: inline-block;">Start Audit</a>
+                    <a class="tab-link active" href="#home" onclick="switchTab('home'); return false;">Home</a>
+                    <a class="tab-link" href="#about" onclick="switchTab('about'); return false;">About Us</a>
+                    <a class="tab-link" href="#methodology" onclick="switchTab('methodology'); return false;">Methodology</a>
+                    <a class="tab-link" href="#services" onclick="switchTab('services'); return false;">Services</a>
+                    <a class="tab-link" href="#pricing" onclick="switchTab('pricing'); return false;">Pricing</a>
+                    <a class="tab-link" href="#contact" onclick="switchTab('contact'); return false;">Contact</a>
+                    <a href="#contact" class="btn-primary" style="text-decoration: none; color: white; display: inline-block;" onclick="switchTab('contact'); return false;">Start Audit</a>
                 </nav>
             </div>
         </div>
@@ -763,8 +763,8 @@
                 <p class="subtitle">Your AI agents face sophisticated attacks every day. We find the vulnerabilities before attackers do — comprehensive red-team testing, 30+ test vectors per system, 24-hour turnaround.</p>
                 
                 <div class="cta-buttons">
-                    <a href="#contact" class="btn-primary" style="text-decoration: none; color: white; display: inline-block;">Request Audit</a>
-                    <a href="#about" class="btn-secondary" style="text-decoration: none; color: #d32f2f; display: inline-block;">Learn About Us</a>
+                    <a href="#contact" class="btn-primary" style="text-decoration: none; color: white; display: inline-block;" onclick="switchTab('contact'); return false;">Request Audit</a>
+                    <a href="#about" class="btn-secondary" style="text-decoration: none; color: #d32f2f; display: inline-block;" onclick="switchTab('about'); return false;">Learn About Us</a>
                 </div>
 
                 <div class="hero-stats">
@@ -1166,7 +1166,7 @@ RESULT: Model hangs, times out, or crashes</div>
                         <li>Email support</li>
                     </ul>
                     
-                    <a href="#contact" class="btn-primary" style="text-decoration: none; color: white; display: inline-block; width: 100%; text-align: center; padding: 14px 32px;">Get Started</a>
+                    <a href="#contact" class="btn-primary" style="text-decoration: none; color: white; display: inline-block; width: 100%; text-align: center; padding: 14px 32px;" onclick="switchTab('contact'); return false;">Get Started</a>
                 </div>
 
                 <div class="pricing-card featured">
@@ -1184,7 +1184,7 @@ RESULT: Model hangs, times out, or crashes</div>
                         <li>Priority support</li>
                     </ul>
                     
-                    <a href="#contact" class="btn-primary" style="text-decoration: none; color: white; display: inline-block; width: 100%; text-align: center; padding: 14px 32px;">Get Started</a>
+                    <a href="#contact" class="btn-primary" style="text-decoration: none; color: white; display: inline-block; width: 100%; text-align: center; padding: 14px 32px;" onclick="switchTab('contact'); return false;">Get Started</a>
                 </div>
 
                 <div class="pricing-card">
@@ -1203,7 +1203,7 @@ RESULT: Model hangs, times out, or crashes</div>
                         <li>Dedicated contact</li>
                     </ul>
                     
-                    <a href="#contact" class="btn-primary" style="text-decoration: none; color: white; display: inline-block; width: 100%; text-align: center; padding: 14px 32px;">Get Started</a>
+                    <a href="#contact" class="btn-primary" style="text-decoration: none; color: white; display: inline-block; width: 100%; text-align: center; padding: 14px 32px;" onclick="switchTab('contact'); return false;">Get Started</a>
                 </div>
             </div>
 
@@ -1339,27 +1339,15 @@ RESULT: Model hangs, times out, or crashes</div>
                 tabEl.classList.add('active');
             }
             
-            // Add active to clicked nav link
-            const linkEl = document.querySelector(`a[href="#${tabName}"]`);
-            if (linkEl) {
-                linkEl.classList.add('active');
+            // Add active to nav link
+            const navLink = document.querySelector(`.tab-link[href="#${tabName}"]`);
+            if (navLink) {
+                navLink.classList.add('active');
             }
             
             // Scroll to top
             window.scrollTo(0, 0);
         }
-
-        // Handle hash-based navigation (crawlable links)
-        window.addEventListener('hashchange', () => {
-            const hash = window.location.hash.slice(1) || 'home';
-            switchTab(hash);
-        });
-
-        // Initialize on page load
-        window.addEventListener('load', () => {
-            const hash = window.location.hash.slice(1) || 'home';
-            switchTab(hash);
-        });
 
         document.getElementById('audit-form').addEventListener('submit', async (e) => {
             e.preventDefault();
