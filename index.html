@@ -1311,11 +1311,16 @@ RESULT: Model hangs, times out, or crashes</div>
         <p>Enterprise security audits for conversational AI, autonomous agents, and LLM systems.</p>
     </footer>
 
-    <!-- Stripe (deferred for performance) -->
-    <script src="https://js.stripe.com/v3/" defer></script>
+    <!-- Stripe -->
+    <script src="https://js.stripe.com/v3/"></script>
 
     <script>
-        const stripe = Stripe('pk_live_51TJeUhHF1vX3G1JrqDc4NstgV8ICWq2GMm8FNajewmFjmiNvm1txssNIkDqSG4W9hj46DBJi12UK4NxTmxeedYvm00EfOZAjkg');
+        let stripe;
+        
+        // Wait for Stripe to load
+        document.addEventListener('DOMContentLoaded', function() {
+            stripe = Stripe('pk_live_51TJeUhHF1vX3G1JrqDc4NstgV8ICWq2GMm8FNajewmFjmiNvm1txssNIkDqSG4W9hj46DBJi12UK4NxTmxeedYvm00EfOZAjkg');
+        });
 
         function switchTab(tabName) {
             // Hide all tabs
@@ -1376,11 +1381,16 @@ RESULT: Model hangs, times out, or crashes</div>
             }
         }
 
-        // Check for payment return on page load
-        document.addEventListener('DOMContentLoaded', handlePaymentReturn);
+        // Setup form handler on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check for payment return
+            handlePaymentReturn();
 
-        // Form submission handler
-        document.getElementById('audit-form').addEventListener('submit', async (e) => {
+            // Form submission handler
+            const auditForm = document.getElementById('audit-form');
+            if (!auditForm) return;
+            
+            auditForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             const formData = new FormData(document.getElementById('audit-form'));
@@ -1432,6 +1442,7 @@ RESULT: Model hangs, times out, or crashes</div>
                 alert('Error: ' + error.message);
                 localStorage.removeItem('auditFormData');
             }
+            });
         });
     </script>
 </body>
