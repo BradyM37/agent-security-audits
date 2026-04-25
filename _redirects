@@ -1,0 +1,2 @@
+# Redirect all root requests to index
+/*  /index.html   200

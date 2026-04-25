@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Allow: /sitemap.xml
+Disallow: /.netlify/
+Disallow: /admin
+
+Sitemap: https://prompt-guard.netlify.app/sitemap.xml
