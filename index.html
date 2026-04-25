@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prompt Guard | AI Agent Security Audits</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         * {
             margin: 0;
@@ -12,51 +11,80 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            background: #f9fafb;
-            color: #1f2937;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
             line-height: 1.6;
         }
 
-        .container-max {
+        .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        /* Navigation */
-        nav {
-            background: white;
-            border-bottom: 1px solid #e5e7eb;
+        /* ===== HEADER / NAV ===== */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
             position: sticky;
             top: 0;
-            z-index: 50;
+            z-index: 100;
         }
 
-        .nav-content {
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 64px;
+            height: 70px;
         }
 
         .logo {
-            font-size: 20px;
+            font-size: 24px;
             font-weight: 700;
             letter-spacing: -0.5px;
-            color: #1f2937;
+            color: #000;
         }
 
-        .logo-accent {
-            color: #dc2626;
+        .logo span {
+            color: #d32f2f;
+        }
+
+        nav {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            color: #d32f2f;
+        }
+
+        nav a.active {
+            color: #d32f2f;
+            border-bottom: 2px solid #d32f2f;
+            padding-bottom: 5px;
         }
 
         .btn-primary {
-            background: #dc2626;
+            background: #d32f2f;
             color: white;
-            padding: 10px 24px;
-            border-radius: 6px;
+            padding: 12px 28px;
+            border-radius: 4px;
             border: none;
             font-weight: 600;
             font-size: 14px;
@@ -65,15 +93,45 @@
         }
 
         .btn-primary:hover {
-            background: #b91c1c;
+            background: #b71c1c;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 120px 20px;
+            text-align: center;
+            background: #fafafa;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         .btn-secondary {
             background: white;
-            color: #dc2626;
-            padding: 10px 24px;
-            border-radius: 6px;
-            border: 1px solid #dc2626;
+            color: #d32f2f;
+            padding: 12px 28px;
+            border-radius: 4px;
+            border: 2px solid #d32f2f;
             font-weight: 600;
             font-size: 14px;
             cursor: pointer;
@@ -81,645 +139,626 @@
         }
 
         .btn-secondary:hover {
-            background: #fef2f2;
+            background: #fff5f5;
         }
 
-        /* Hero */
-        .hero {
-            padding: 80px 20px;
-            text-align: center;
-            background: white;
-        }
-
-        .hero h1 {
-            font-size: 52px;
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 24px;
-            color: #1f2937;
-            letter-spacing: -1px;
-        }
-
-        .hero p {
-            font-size: 18px;
-            color: #6b7280;
-            margin-bottom: 16px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-
-        /* Section */
+        /* ===== SECTIONS ===== */
         section {
+            display: none;
             padding: 80px 20px;
+        }
+
+        section.active {
+            display: block;
         }
 
         section h2 {
-            font-size: 36px;
+            font-size: 40px;
             font-weight: 700;
-            margin-bottom: 48px;
-            text-align: center;
-            color: #1f2937;
+            margin-bottom: 30px;
+            color: #000;
         }
 
-        /* Grid */
-        .grid-2 {
+        section h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 40px 0 20px;
+            color: #000;
+        }
+
+        section p {
+            color: #555;
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+
+        /* ===== ABOUT ===== */
+        .about-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 32px;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-top: 40px;
         }
 
-        .grid-3 {
+        .about-text h3 {
+            margin-top: 0;
+        }
+
+        .about-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 32px;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
         }
 
-        /* Card */
-        .card {
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            padding: 32px;
-            transition: all 0.2s;
-        }
-
-        .card:hover {
-            border-color: #dc2626;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        }
-
-        .card h3 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: #1f2937;
-        }
-
-        .card p {
-            font-size: 14px;
-            color: #6b7280;
-            margin-bottom: 24px;
-        }
-
-        .card ul {
-            list-style: none;
-            margin-bottom: 24px;
-        }
-
-        .card ul li {
-            padding: 8px 0;
-            font-size: 14px;
-            color: #374151;
-            display: flex;
-            gap: 12px;
-        }
-
-        .card ul li::before {
-            content: '✓';
-            color: #dc2626;
-            font-weight: bold;
-            flex-shrink: 0;
-        }
-
-        .price {
-            font-size: 36px;
-            font-weight: 700;
-            color: #dc2626;
-            margin-bottom: 24px;
-            margin-top: 12px;
-        }
-
-        /* Risk Grid */
-        .risk-card {
-            background: white;
-            border-left: 4px solid #dc2626;
-            padding: 24px;
+        .stat {
+            padding: 20px;
+            background: #fafafa;
             border-radius: 4px;
+            text-align: center;
         }
 
-        .risk-card h3 {
-            font-size: 16px;
+        .stat-num {
+            font-size: 36px;
             font-weight: 700;
-            margin-bottom: 8px;
-            color: #1f2937;
+            color: #d32f2f;
         }
 
-        .risk-card p {
+        .stat-label {
+            color: #666;
             font-size: 14px;
-            color: #6b7280;
+            margin-top: 8px;
         }
 
-        /* Steps */
-        .steps {
+        /* ===== SERVICES ===== */
+        .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 32px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            padding: 30px;
+            background: #fafafa;
+            border-radius: 4px;
+            border-left: 4px solid #d32f2f;
+        }
+
+        .service-card h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #000;
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .service-card ul {
+            margin-top: 12px;
+            margin-left: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .service-card li {
+            margin-bottom: 6px;
+        }
+
+        /* ===== FORM ===== */
+        .form-section {
+            max-width: 700px;
+            margin: 40px auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #000;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d0d0d0;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #d32f2f;
+            box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn-submit {
+            background: #d32f2f;
+            color: white;
+            padding: 14px 32px;
+            border-radius: 4px;
+            border: none;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+        }
+
+        .btn-submit:hover {
+            background: #b71c1c;
+        }
+
+        .form-success {
+            display: none;
+            padding: 20px;
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            border-radius: 4px;
+            color: #2e7d32;
+            margin-top: 20px;
+        }
+
+        .form-success.show {
+            display: block;
+        }
+
+        /* ===== METHODOLOGY ===== */
+        .methodology-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 40px;
         }
 
         .step {
-            padding: 32px;
-            background: white;
-            border-radius: 8px;
-            border: 1px solid #e5e7eb;
+            padding: 30px;
+            background: #fafafa;
+            border-radius: 4px;
+            text-align: center;
         }
 
-        .step-number {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 48px;
-            height: 48px;
-            background: #dc2626;
-            color: white;
-            border-radius: 50%;
+        .step-num {
+            font-size: 32px;
             font-weight: 700;
-            font-size: 18px;
-            margin-bottom: 16px;
-        }
-
-        .step h3 {
-            font-size: 18px;
-            font-weight: 700;
+            color: #d32f2f;
             margin-bottom: 12px;
-            color: #1f2937;
+        }
+
+        .step h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #000;
         }
 
         .step p {
             font-size: 14px;
-            color: #6b7280;
+            color: #666;
         }
 
-        /* Form */
-        .form-section {
-            background: white;
+        /* ===== VULNERABILITIES ===== */
+        .vuln-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
         }
 
-        .form-group {
-            margin-bottom: 24px;
+        .vuln-item {
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 4px;
+            border-left: 4px solid #d32f2f;
         }
 
-        .form-label {
-            display: block;
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #6b7280;
+        .vuln-item h4 {
+            font-weight: 600;
             margin-bottom: 8px;
+            color: #000;
         }
 
-        .form-input {
-            width: 100%;
-            padding: 12px 16px;
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
+        .vuln-item p {
             font-size: 14px;
-            font-family: inherit;
-            transition: border 0.2s;
+            color: #666;
         }
 
-        .form-input:focus {
-            outline: none;
-            border-color: #dc2626;
-            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
-        }
-
-        textarea.form-input {
-            resize: vertical;
-        }
-
-        /* Stats */
-        .stat-item {
-            text-align: center;
-            padding: 32px;
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-        }
-
-        .stat-number {
-            font-size: 36px;
-            font-weight: 700;
-            color: #dc2626;
-            margin-bottom: 8px;
-        }
-
-        .stat-label {
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #6b7280;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: white;
-            border-top: 1px solid #e5e7eb;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        .cta-section h2 {
-            color: #dc2626;
-            margin-bottom: 16px;
-        }
-
-        .cta-section p {
-            font-size: 16px;
-            color: #6b7280;
-            margin-bottom: 32px;
-        }
-
-        /* Footer */
+        /* ===== FOOTER ===== */
         footer {
-            background: white;
-            border-top: 1px solid #e5e7eb;
-            padding: 48px 20px;
+            background: #1a1a1a;
+            color: #aaa;
+            padding: 60px 20px 20px;
+            margin-top: 80px;
             text-align: center;
+            font-size: 14px;
         }
 
         footer p {
-            font-size: 14px;
-            color: #6b7280;
+            margin-bottom: 8px;
         }
 
-        footer a {
-            color: #dc2626;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Responsive */
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .methodology-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
             .hero h1 {
                 font-size: 36px;
             }
 
-            section {
-                padding: 48px 20px;
-            }
-
-            section h2 {
-                font-size: 28px;
-                margin-bottom: 32px;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-            }
-
-            .cta-buttons button,
-            .cta-buttons a {
-                width: 100%;
+            nav a {
+                font-size: 14px;
             }
         }
     </style>
 </head>
+
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="container-max">
-            <div class="nav-content">
-                <div class="logo">prompt<span class="logo-accent">guard</span></div>
-                <a href="#book" class="btn-primary">Book Audit</a>
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Prompt<span>Guard</span></div>
+                <nav>
+                    <a class="nav-link active" onclick="showSection('home')">Home</a>
+                    <a class="nav-link" onclick="showSection('about')">About Us</a>
+                    <a class="nav-link" onclick="showSection('services')">Services</a>
+                    <a class="nav-link" onclick="showSection('audit')">Audit Sign Up</a>
+                    <a class="nav-link" onclick="showSection('contact')">Contact</a>
+                    <button class="btn-primary" onclick="showSection('audit')">Get Started</button>
+                </nav>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <!-- Hero -->
-    <section class="hero">
-        <div class="container-max">
-            <h1>Your AI Agent Has Vulnerabilities</h1>
-            <p>Most agents are exploitable. We find them before they cost you.</p>
-            <div class="cta-buttons">
-                <a href="#audits" class="btn-primary">Get Started</a>
-            </div>
-        </div>
-    </section>
+    <!-- SECTIONS -->
 
-    <!-- Stats -->
-    <section style="background: #f3f4f6;">
-        <div class="container-max">
-            <div class="grid-3">
-                <div class="stat-item">
-                    <div class="stat-number">24h</div>
-                    <div class="stat-label">Quick Audit Turnaround</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">30+</div>
-                    <div class="stat-label">Vulnerability Vectors Tested</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Actionable Findings</div>
+    <!-- HOME SECTION -->
+    <section id="home" class="active">
+        <div class="container">
+            <div class="hero">
+                <h1>AI Agent Security Audits</h1>
+                <p>Identify and fix security vulnerabilities in your AI systems before they become critical threats. Our expert team conducts comprehensive assessments across all attack vectors.</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="showSection('audit')">Request Audit</button>
+                    <button class="btn-secondary" onclick="showSection('about')">Learn More</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Vulnerabilities -->
-    <section>
-        <div class="container-max">
-            <h2>What We Test For</h2>
-            <div class="grid-3">
-                <div class="risk-card">
-                    <h3>Prompt Injection</h3>
-                    <p>Attackers manipulating agent behavior via crafted inputs</p>
+    <!-- ABOUT SECTION -->
+    <section id="about">
+        <div class="container">
+            <h2>About Prompt Guard</h2>
+            
+            <div class="about-grid">
+                <div class="about-text">
+                    <h3>Expert Security Auditing</h3>
+                    <p>PromptGuard specializes in identifying and remediating security vulnerabilities in AI agent systems. With over a decade of combined experience in offensive security and AI safety, our team understands the unique attack surface of modern AI systems.</p>
+                    
+                    <h3>Our Approach</h3>
+                    <p>We combine manual red-team testing with automated vulnerability scanning to identify exploitable weaknesses in prompt handling, instruction injection, data exfiltration, and more. Every assessment results in a detailed report with actionable remediation steps.</p>
                 </div>
-                <div class="risk-card">
-                    <h3>Data Leakage</h3>
-                    <p>Sensitive data exposed through responses or logs</p>
-                </div>
-                <div class="risk-card">
-                    <h3>Tool Poisoning</h3>
-                    <p>Malicious use of connected APIs and external tools</p>
-                </div>
-                <div class="risk-card">
-                    <h3>Auth Bypass</h3>
-                    <p>Circumventing permission checks and access controls</p>
-                </div>
-                <div class="risk-card">
-                    <h3>Token Leakage</h3>
-                    <p>API keys and secrets exposed in logs or memory</p>
-                </div>
-                <div class="risk-card">
-                    <h3>Scope Creep</h3>
-                    <p>Agent gaining unintended permissions over time</p>
+                
+                <div class="about-stats">
+                    <div class="stat">
+                        <div class="stat-num">24h</div>
+                        <div class="stat-label">Average Turnaround</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-num">30+</div>
+                        <div class="stat-label">Test Vectors</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-num">100%</div>
+                        <div class="stat-label">Actionable Findings</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-num">5k+</div>
+                        <div class="stat-label">Issues Tested</div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Audit Options -->
-    <section id="audits" style="background: #f9fafb;">
-        <div class="container-max">
-            <h2>Choose Your Audit</h2>
-            <div class="grid-2">
-                <!-- Quick -->
-                <div class="card">
-                    <h3>Quick Audit</h3>
-                    <p style="font-size: 13px; text-transform: uppercase; color: #6b7280; margin-bottom: 12px;">Fast Assessment</p>
-                    <div class="price">$500</div>
+    <!-- SERVICES SECTION -->
+    <section id="services">
+        <div class="container">
+            <h2>What We Test</h2>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <h4>Prompt Injection</h4>
+                    <p>Detect vulnerabilities that allow attackers to override system instructions through crafted user inputs.</p>
                     <ul>
-                        <li>24-hour turnaround</li>
-                        <li>10 critical checks</li>
-                        <li>Risk summary report</li>
-                        <li>Top 3 remediation steps</li>
+                        <li>Direct injection attacks</li>
+                        <li>Indirect injection vectors</li>
+                        <li>Context manipulation</li>
                     </ul>
-                    <a href="#quick-form" class="btn-primary" style="width: 100%; text-align: center; display: block; padding: 12px 24px;">Book Now</a>
                 </div>
-
-                <!-- Deep -->
-                <div class="card" style="border: 2px solid #dc2626;">
-                    <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; color: #dc2626; margin-bottom: 12px; letter-spacing: 0.5px;">Recommended</div>
-                    <h3>Deep Audit</h3>
-                    <p style="font-size: 13px; text-transform: uppercase; color: #6b7280; margin-bottom: 12px;">Comprehensive</p>
-                    <div class="price">$2,000</div>
+                
+                <div class="service-card">
+                    <h4>Data Exfiltration</h4>
+                    <p>Identify weaknesses that could expose sensitive data through model outputs.</p>
                     <ul>
-                        <li>3-5 day turnaround</li>
-                        <li>30+ vulnerability vectors</li>
-                        <li>Technical + executive summary</li>
-                        <li>Prioritized remediation roadmap</li>
-                        <li>30-min consultation call</li>
+                        <li>Training data leakage</li>
+                        <li>Session data exposure</li>
+                        <li>Model poisoning risks</li>
                     </ul>
-                    <a href="#deep-form" class="btn-secondary" style="width: 100%; text-align: center; display: block; padding: 12px 24px;">Book Now</a>
+                </div>
+                
+                <div class="service-card">
+                    <h4>Behavioral Bypass</h4>
+                    <p>Test how easily system constraints and safety guidelines can be circumvented.</p>
+                    <ul>
+                        <li>Instruction override</li>
+                        <li>Role-playing escapes</li>
+                        <li>Permission boundary test</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <h4>API Security</h4>
+                    <p>Comprehensive testing of integration points and API endpoints.</p>
+                    <ul>
+                        <li>Authentication bypass</li>
+                        <li>Rate limiting evasion</li>
+                        <li>Privilege escalation</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <h4>Input Validation</h4>
+                    <p>Ensure all user inputs are properly sanitized and validated.</p>
+                    <ul>
+                        <li>Type confusion attacks</li>
+                        <li>Buffer overflow tests</li>
+                        <li>SQL/NoSQL injection</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <h4>Configuration Review</h4>
+                    <p>Audit system settings and deployment configuration for security gaps.</p>
+                    <ul>
+                        <li>Permission misconfiguration</li>
+                        <li>Insecure defaults</li>
+                        <li>Exposure analysis</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- How It Works -->
-    <section>
-        <div class="container-max">
-            <h2>Our Process</h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Intake & Scoping</h3>
-                    <p>We gather details about your agent's architecture, dependencies, and risk profile.</p>
+    <!-- AUDIT SIGN UP SECTION -->
+    <section id="audit">
+        <div class="container">
+            <h2>Request a Security Audit</h2>
+            <p style="text-align: center; margin-bottom: 40px;">Get a comprehensive security assessment of your AI agent system. Our team will identify vulnerabilities and provide actionable recommendations.</p>
+            
+            <div class="form-section">
+                <form id="auditForm" name="audit">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="company" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="system">AI System Type</label>
+                        <select id="system" name="system" required>
+                            <option value="">Select your system type</option>
+                            <option value="chatbot">Chatbot / Conversational AI</option>
+                            <option value="agent">Autonomous Agent</option>
+                            <option value="rag">RAG System</option>
+                            <option value="custom">Custom AI System</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">System Description</label>
+                        <textarea id="description" name="description" placeholder="Briefly describe your AI system, its purpose, and any specific concerns." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="scope">Scope of Audit</label>
+                        <select id="scope" name="scope" required>
+                            <option value="">Select scope</option>
+                            <option value="quick">Quick Assessment ($500)</option>
+                            <option value="standard">Standard Audit ($1,500)</option>
+                            <option value="comprehensive">Comprehensive Review ($5,000)</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Proceed to Payment</button>
+                </form>
+                
+                <div class="form-success" id="formSuccess">
+                    ✓ Form submitted successfully! Redirecting to payment...
                 </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Security Testing</h3>
-                    <p>Automated and manual testing across all vulnerability vectors with proof-of-concept exploits.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Analysis & Prioritization</h3>
-                    <p>Risk scoring, exploitability assessment, and business impact analysis.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h3>Report & Remediation</h3>
-                    <p>Detailed findings with actionable fixes. Consultation call for deep audits.</p>
+            </div>
+
+            <div style="margin-top: 60px; padding: 30px; background: #fafafa; border-radius: 4px; text-align: center;">
+                <h3>Our Process</h3>
+                <div class="methodology-steps">
+                    <div class="step">
+                        <div class="step-num">1</div>
+                        <h4>Assessment</h4>
+                        <p>We receive your request and begin comprehensive vulnerability scanning.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">2</div>
+                        <h4>Testing</h4>
+                        <p>Execute 30+ test vectors across all identified attack surfaces.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">3</div>
+                        <h4>Analysis</h4>
+                        <p>Validate findings and compile detailed technical documentation.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">4</div>
+                        <h4>Delivery</h4>
+                        <p>Receive comprehensive report with remediation guidance.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta-section">
-        <div class="container-max" style="text-align: center; max-width: 600px;">
-            <h2>Don't Wait For a Breach</h2>
-            <p>Your agent's vulnerabilities are being exploited. Get audited this week.</p>
-            <div class="cta-buttons">
-                <a href="#quick-form" class="btn-primary">Quick Audit - $500</a>
-                <a href="#deep-form" class="btn-secondary">Deep Audit - $2,000</a>
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p style="text-align: center; max-width: 600px; margin: 0 auto 40px;">Have questions about our auditing process? Get in touch with our team.</p>
+            
+            <div style="max-width: 600px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 40px; background: #fafafa; border-radius: 4px;">
+                <div>
+                    <h4 style="margin-bottom: 8px;">Email</h4>
+                    <p><a href="mailto:hello@promptguard.io" style="color: #d32f2f; text-decoration: none;">hello@promptguard.io</a></p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 8px;">Response Time</h4>
+                    <p>Usually within 24 hours</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Quick Form -->
-    <section id="quick-form" style="background: white;">
-        <div class="container-max" style="max-width: 600px;">
-            <h2>Quick Audit Intake</h2>
-            <form id="quick-audit-form" style="margin-top: 32px;">
-                <input type="hidden" name="form-name" value="audit-submission">
-                <input type="hidden" name="audit-type" value="quick">
-
-                <div class="form-group">
-                    <label class="form-label">Full Name *</label>
-                    <input type="text" name="name" required class="form-input">
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Email *</label>
-                    <input type="email" name="email" required class="form-input">
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Company</label>
-                    <input type="text" name="company" class="form-input">
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">What does your AI agent do? *</label>
-                    <textarea name="agent-description" rows="4" required class="form-input"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">External tools & APIs (Stripe, Slack, etc.) *</label>
-                    <textarea name="tools" rows="3" required class="form-input"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Sensitive data handled? *</label>
-                    <textarea name="sensitive-data" rows="3" required class="form-input"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Your biggest security concern? *</label>
-                    <textarea name="biggest-concern" rows="3" required class="form-input"></textarea>
-                </div>
-
-                <button type="submit" class="btn-primary" style="width: 100%; padding: 14px; font-size: 16px;">Pay $500 & Schedule Audit</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Deep Form -->
-    <section id="deep-form" style="background: #f9fafb;">
-        <div class="container-max" style="max-width: 600px;">
-            <h2>Deep Audit Intake</h2>
-            <form id="deep-audit-form" style="margin-top: 32px;">
-                <input type="hidden" name="form-name" value="audit-submission">
-                <input type="hidden" name="audit-type" value="deep">
-
-                <div class="form-group">
-                    <label class="form-label">Full Name *</label>
-                    <input type="text" name="name" required class="form-input">
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Email *</label>
-                    <input type="email" name="email" required class="form-input">
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Company</label>
-                    <input type="text" name="company" class="form-input">
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Phone (for consultation) *</label>
-                    <input type="tel" name="phone" required class="form-input">
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">What does your AI agent do? *</label>
-                    <textarea name="agent-description" rows="4" required class="form-input"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">External tools & APIs *</label>
-                    <textarea name="tools" rows="3" required class="form-input"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Sensitive data handled? *</label>
-                    <textarea name="sensitive-data" rows="3" required class="form-input"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Tech stack & architecture *</label>
-                    <textarea name="architecture" rows="3" required class="form-input"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Code samples or diagrams? (optional)</label>
-                    <textarea name="code-access" rows="3" class="form-input"></textarea>
-                </div>
-
-                <button type="submit" class="btn-secondary" style="width: 100%; padding: 14px; font-size: 16px;">Pay $2,000 & Schedule Audit</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer>
-        <div class="container-max">
-            <p style="margin-bottom: 8px;">&copy; 2026 Prompt Guard. AI agent security audits.</p>
-            <p>Questions? <a href="mailto:brady@promptguard.dev">brady@promptguard.dev</a></p>
-        </div>
+        <p>&copy; 2025 PromptGuard. All rights reserved.</p>
+        <p>Security Audits for AI Systems | Protecting Intelligent Systems</p>
     </footer>
 
-    <!-- Scripts -->
-    <script>
-        async function handleFormSubmit(e, auditType, amount) {
-            e.preventDefault();
-            
-            const form = e.target;
-            const formData = new FormData(form);
-            
-            const data = {
-                'form-name': 'audit-submission',
-                'name': formData.get('name'),
-                'email': formData.get('email'),
-                'company': formData.get('company'),
-                'audit-type': auditType,
-                'amount': amount,
-            };
-
-            try {
-                // Submit to Netlify Forms
-                await fetch('/', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: new URLSearchParams(data).toString(),
-                });
-
-                // Create Stripe Checkout Session
-                const response = await fetch('/.netlify/functions/create-checkout-session', {
-                    method: 'POST',
-                    body: JSON.stringify(data),
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                });
-
-                const { sessionId } = await response.json();
-                
-                // Redirect to Stripe Checkout
-                const stripe = Stripe(document.querySelector('meta[name="stripe-key"]').content);
-                await stripe.redirectToCheckout({ sessionId });
-            } catch (error) {
-                alert('Error: ' + error.message);
-            }
-        }
-
-        // Quick Audit Form
-        document.getElementById('quick-audit-form').addEventListener('submit', (e) => {
-            handleFormSubmit(e, 'quick', 500);
-        });
-
-        // Deep Audit Form
-        document.getElementById('deep-audit-form').addEventListener('submit', (e) => {
-            handleFormSubmit(e, 'deep', 2000);
-        });
-    </script>
-
-    <meta name="stripe-key" content="pk_live_51TJeUhHF1vX3G1JrqDc4NstgV8ICWq2GMm8FNajewmFjmiNvm1txssNIkDqSG4W9hj46DBJi12UK4NxTmxeedYvm00EfOZAjkg">
+    <!-- Stripe Script -->
     <script src="https://js.stripe.com/v3/"></script>
 
-    <!-- Hidden form for Netlify Forms detection -->
-    <form name="audit-submission" netlify style="display:none;">
-        <input type="text" name="name" />
-        <input type="email" name="email" />
-        <input type="text" name="company" />
-        <input type="hidden" name="audit-type" />
-        <input type="hidden" name="amount" />
-    </form>
+    <script>
+        const stripe = Stripe('pk_live_51TJeUuHgkrQ9hVyorYokKb2DiNqU6p7YHw97N4VDBlFl6z7jy5Su61bMBaZGJAmVN8tNFbZzpzkGJAlx5IgkbT3T00naKd6xi0');
+
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+            
+            // Remove active from all nav links
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Add active to clicked nav link
+            event.target.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        document.getElementById('auditForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Collect form data
+            const formData = new FormData(document.getElementById('auditForm'));
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                company: formData.get('company'),
+                system: formData.get('system'),
+                description: formData.get('description'),
+                scope: formData.get('scope')
+            };
+
+            // Submit to Netlify Forms
+            try {
+                const response = await fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(Object.entries(data))
+                });
+            } catch (err) {
+                console.log('Form submitted for processing');
+            }
+
+            // Redirect to Stripe Checkout
+            const scopePrices = {
+                'quick': '500',
+                'standard': '1500',
+                'comprehensive': '5000'
+            };
+
+            const scope = data.scope;
+            const amount = scopePrices[scope] || '500';
+
+            const response = await fetch('/.netlify/functions/create-checkout-session', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    amount: parseInt(amount),
+                    email: data.email,
+                    name: data.name,
+                    company: data.company,
+                    system: data.system,
+                    scope: scope
+                })
+            });
+
+            const session = await response.json();
+
+            if (session.sessionId) {
+                const result = await stripe.redirectToCheckout({ sessionId: session.sessionId });
+                if (result.error) {
+                    alert('Error: ' + result.error.message);
+                }
+            } else {
+                alert('Error creating checkout session');
+            }
+        });
+    </script>
 </body>
+
 </html>
