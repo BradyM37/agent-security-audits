@@ -9,7 +9,14 @@ exports.handler = async (event) => {
   }
 
   try {
-    const { name, email, auditType, amount } = JSON.parse(event.body);
+    const { name, email, company, system, scope, amount } = JSON.parse(event.body);
+
+    // Map scope to product name
+    const scopeNames = {
+      'quick': 'Quick Assessment',
+      'standard': 'Standard Audit',
+      'comprehensive': 'Comprehensive Review'
+    };
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -18,10 +25,8 @@ exports.handler = async (event) => {
           price_data: {
             currency: 'usd',
             product_data: {
-              name: auditType === 'quick' ? 'Quick AI Agent Security Audit' : 'Deep AI Agent Security Audit',
-              description: auditType === 'quick' 
-                ? '24-hour turnaround, 10 critical checks'
-                : '3-5 day turnaround, 30+ vulnerability vectors',
+              name: `PromptGuard - ${scopeNames[scope] || 'AI Security Audit'}`,
+              description: `Security audit for ${system || 'AI system'}`,
             },
             unit_amount: amount * 100,
           },
@@ -30,12 +35,14 @@ exports.handler = async (event) => {
       ],
       customer_email: email,
       mode: 'payment',
-      success_url: `https://prompt-guard.netlify.app/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `https://prompt-guard.netlify.app/#${auditType}-form`,
+      success_url: `https://prompt-guard.netlify.app/#contact`,
+      cancel_url: `https://prompt-guard.netlify.app/#contact`,
       metadata: {
-        auditType,
+        scope,
         name,
         email,
+        company,
+        system,
       },
     });
 
