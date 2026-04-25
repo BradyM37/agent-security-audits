@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agent Security Audits | Vulnerability Assessment & Testing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white">
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center gap-2">
+                    <div class="text-2xl font-bold text-red-600">🔴</div>
+                    <span class="text-xl font-semibold text-gray-900">Agent Security</span>
+                </div>
+                <a href="#book" class="bg-red-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-red-700 transition">
+                    Book Audit
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="bg-gradient-to-br from-gray-50 to-gray-100 py-20 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-5xl sm:text-6xl font-bold text-gray-900 mb-6">
+                Is Your AI Agent Secure?
+            </h1>
+            <p class="text-xl text-gray-700 mb-4">
+                Find out in 24 hours. Before it costs you everything.
+            </p>
+            <p class="text-lg text-gray-600 mb-8">
+                Most AI agents have exploitable vulnerabilities. We find them, and tell you how to fix them.
+            </p>
+            <a href="#audits" class="inline-block bg-red-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-red-700 transition">
+                Get Started
+            </a>
+        </div>
+    </section>
+
+    <!-- Risks Grid -->
+    <section class="py-16 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-center text-gray-900 mb-12">
+                Your Agent Is Vulnerable To
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="p-6 border border-gray-200 rounded-lg hover:border-red-500 hover:shadow-lg transition">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Prompt Injection</h3>
+                    <p class="text-gray-600">Attackers manipulating your agent's behavior through crafted inputs</p>
+                </div>
+                <div class="p-6 border border-gray-200 rounded-lg hover:border-red-500 hover:shadow-lg transition">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Data Leakage</h3>
+                    <p class="text-gray-600">Sensitive data exposed through agent responses or logs</p>
+                </div>
+                <div class="p-6 border border-gray-200 rounded-lg hover:border-red-500 hover:shadow-lg transition">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Tool Poisoning</h3>
+                    <p class="text-gray-600">Malicious use of connected APIs and external tools</p>
+                </div>
+                <div class="p-6 border border-gray-200 rounded-lg hover:border-red-500 hover:shadow-lg transition">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Auth Bypass</h3>
+                    <p class="text-gray-600">Circumventing permission checks and access controls</p>
+                </div>
+                <div class="p-6 border border-gray-200 rounded-lg hover:border-red-500 hover:shadow-lg transition">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Token Leakage</h3>
+                    <p class="text-gray-600">API keys and secrets exposed in logs or memory</p>
+                </div>
+                <div class="p-6 border border-gray-200 rounded-lg hover:border-red-500 hover:shadow-lg transition">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Scope Creep</h3>
+                    <p class="text-gray-600">Agent gaining unintended permissions over time</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audit Options -->
+    <section id="audits" class="py-16 px-4 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-center text-gray-900 mb-12">
+                Two Ways to Get Audited
+            </h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Quick Audit -->
+                <div class="bg-white border-2 border-gray-200 rounded-lg p-8 hover:border-red-500 transition">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Quick Audit</h3>
+                    <p class="text-4xl font-bold text-red-600 mb-6">$500</p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-500 font-bold mt-1">✓</span>
+                            <span class="text-gray-700">24-hour turnaround</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-500 font-bold mt-1">✓</span>
+                            <span class="text-gray-700">10 critical vulnerability checks</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-500 font-bold mt-1">✓</span>
+                            <span class="text-gray-700">Risk summary report</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-500 font-bold mt-1">✓</span>
+                            <span class="text-gray-700">Top 3 fix recommendations</span>
+                        </li>
+                    </ul>
+                    <a href="#quick-form" class="block w-full text-center bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition">
+                        Book Quick Audit
+                    </a>
+                </div>
+
+                <!-- Deep Audit -->
+                <div class="bg-white border-2 border-red-500 rounded-lg p-8 shadow-lg">
+                    <div class="mb-4">
+                        <span class="inline-block bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-semibold">Most Popular</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Deep Audit</h3>
+                    <p class="text-4xl font-bold text-red-600 mb-6">$2,000</p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-500 font-bold mt-1">✓</span>
+                            <span class="text-gray-700">3-5 day turnaround</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-500 font-bold mt-1">✓</span>
+                            <span class="text-gray-700">30+ vulnerability vectors tested</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-500 font-bold mt-1">✓</span>
+                            <span class="text-gray-700">Full technical + executive summary</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-500 font-bold mt-1">✓</span>
+                            <span class="text-gray-700">Prioritized remediation roadmap</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-500 font-bold mt-1">✓</span>
+                            <span class="text-gray-700">30-min consultation call</span>
+                        </li>
+                    </ul>
+                    <a href="#deep-form" class="block w-full text-center bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition">
+                        Book Deep Audit
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section class="py-16 px-4 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold text-center text-gray-900 mb-12">
+                How It Works
+            </h2>
+            <div class="space-y-8">
+                <div class="flex gap-6">
+                    <div class="flex-shrink-0">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-red-600 text-white font-bold text-lg">
+                            1
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Fill Out Intake Form</h3>
+                        <p class="text-gray-600">Tell us about your agent: what it does, what tools it uses, what data it touches</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <div class="flex-shrink-0">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-red-600 text-white font-bold text-lg">
+                            2
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">We Test & Analyze</h3>
+                        <p class="text-gray-600">Run 20-30+ security vectors against your agent's architecture and behavior</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <div class="flex-shrink-0">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-red-600 text-white font-bold text-lg">
+                            3
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Receive Report</h3>
+                        <p class="text-gray-600">Detailed findings with risk scores, proof-of-concept exploits, and exact fixes</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <div class="flex-shrink-0">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-red-600 text-white font-bold text-lg">
+                            4
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Get Help (Deep Only)</h3>
+                        <p class="text-gray-600">30-min consultation to prioritize fixes and implement defenses</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section id="book" class="bg-gradient-to-r from-red-600 to-red-700 py-16 px-4">
+        <div class="max-w-2xl mx-auto text-center text-white">
+            <h2 class="text-4xl font-bold mb-4">Don't Wait For A Breach</h2>
+            <p class="text-lg mb-8 opacity-95">Get your agent audited this week.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#quick-form" class="bg-white text-red-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+                    Quick Audit - $500
+                </a>
+                <a href="#deep-form" class="bg-red-900 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-800 transition border border-red-500">
+                    Deep Audit - $2,000
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Form -->
+    <section id="quick-form" class="py-16 px-4 bg-gray-50">
+        <div class="max-w-2xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8">Quick Audit Intake</h2>
+            <form name="quick-audit" method="POST" netlify class="bg-white p-8 rounded-lg border border-gray-200 space-y-6">
+                <input type="hidden" name="form-name" value="quick-audit">
+                
+                <div>
+                    <label class="block text-sm font-semibold text-gray-900 mb-2">Your Name</label>
+                    <input type="text" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-900 mb-2">Email</label>
+                    <input type="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-900 mb-2">Company</label>
+                    <input type="text" name="company" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-900 mb-2">What does your AI agent do?</label>
+                    <textarea name="agent-description" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-900 mb-2">What external tools/APIs does it connect to?</label>
+                    <textarea name="tools" rows="3" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-900 mb-2">What sensitive data does it handle?</label>
+                    <textarea name="sensitive-data" rows="3" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-900 mb-2">What's your biggest security concern?</label>
+                    <textarea name="biggest-concern" rows="3" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-red-600 text-white py-3 rounded-lg font-semibold hover:bg-red-700 transition">
+                    Book Quick Audit ($500)
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Deep Form -->
+    <section id="deep-form" class="py-16 px-4 bg-white">
+        <div class="max-w-2xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8">Deep Audit Intake</h2>
+            <form name="deep-audit" method="POST" netlify class="bg-gray-50 p-8 rounded-lg border border-gray-200 space-y-6">
+                <input type="hidden" name="form-name" value="deep-audit">
+                
+                <div>
+                    <label class="block text-sm font-semibold text-gray-900 mb-2">Your Name</label>
+                    <input type="text" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-900 mb-2">Email</label>
+                    <input type="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-900 mb-2">Company</label>
+                    <input type="text" name="company" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-900 mb-2">Phone (for consultation)</label>
+                    <input type="tel" name="phone" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-900 mb-2">What does your AI agent do?</label>
+                    <textarea name="agent-description" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-900 mb-2">What external tools/APIs does it connect to?</label>
+                    <textarea name="tools" rows="3" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-900 mb-2">What sensitive data does it handle?</label>
+                    <textarea name="sensitive-data" rows="3" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-900 mb-2">Tech stack / agent architecture</label>
+                    <textarea name="architecture" rows="3" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-900 mb-2">Code samples or diagrams? (optional)</label>
+                    <textarea name="code-access" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-red-600 text-white py-3 rounded-lg font-semibold hover:bg-red-700 transition">
+                    Book Deep Audit ($2,000)
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 px-4">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="mb-2">&copy; 2026 Agent Security Audits. Security testing for AI agents.</p>
+            <p>Contact: <a href="mailto:brady@agentsecurity.dev" class="text-red-400 hover:text-red-300">brady@agentsecurity.dev</a></p>
+        </div>
+    </footer>
+</body>
+</html>
