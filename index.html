@@ -744,12 +744,10 @@
                 <div class="logo">Prompt<span>Guard</span></div>
                 <nav>
                     <a class="tab-link active" onclick="switchTab('home')">Home</a>
+                    <a class="tab-link" onclick="switchTab('products')">Products</a>
                     <a class="tab-link" onclick="switchTab('about')">About Us</a>
-                    <a class="tab-link" onclick="switchTab('methodology')">Methodology</a>
-                    <a class="tab-link" onclick="switchTab('services')">Services</a>
-                    <a class="tab-link" onclick="switchTab('pricing')">Pricing</a>
                     <a class="tab-link" onclick="switchTab('contact')">Contact</a>
-                    <button class="btn-primary" onclick="switchTab('contact')">Start Audit</button>
+                    <button class="btn-primary" onclick="switchTab('contact')">Get Started</button>
                 </nav>
             </div>
         </div>
@@ -758,13 +756,29 @@
     <!-- HOME TAB -->
     <div id="home" class="tab-content active">
         <div class="container">
+            <h2 style="margin-bottom: 40px; text-align: center;">Choose Your Service</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 80px;">
+                <div style="padding: 40px; background: #fafafa; border-radius: 4px; border-left: 4px solid #d32f2f;">
+                    <h3 style="margin-top: 0; color: #000;">PromptGuard</h3>
+                    <p style="color: #666; font-size: 15px; margin-bottom: 20px;"><strong>Enterprise AI Security Audits</strong></p>
+                    <p style="font-size: 14px; color: #555; margin-bottom: 20px; line-height: 1.6;">Red-team testing for conversational AI, autonomous agents, RAG systems, and LLM implementations. 100+ vulnerability patterns tested with CVSS scoring.</p>
+                    <button class="btn-primary" onclick="switchTab('products')" style="width: 100%;">View Pricing</button>
+                </div>
+                <div style="padding: 40px; background: #fafafa; border-radius: 4px; border-left: 4px solid #d32f2f;">
+                    <h3 style="margin-top: 0; color: #000;">SiteCheck</h3>
+                    <p style="color: #666; font-size: 15px; margin-bottom: 20px;"><strong>Website Security Reviews</strong></p>
+                    <p style="font-size: 14px; color: #555; margin-bottom: 20px; line-height: 1.6;">Fast, affordable security audits for small businesses. Honest assessments of WordPress, WooCommerce, and standard web infrastructure. Start at $99.</p>
+                    <button class="btn-primary" onclick="switchTab('products')" style="width: 100%;">View Pricing</button>
+                </div>
+            </div>
+
             <div class="hero-intro">
-                <h1>AI Security Audits You Can Actually <span class="highlight">Trust</span></h1>
-                <p class="subtitle">Your AI agents face sophisticated attacks every day. We find the vulnerabilities before attackers do — comprehensive red-team testing, 100+ vulnerability patterns, detailed CVSS scoring and remediation guidance.</p>
+                <h1>Security Auditing You Can <span class="highlight">Trust</span></h1>
+                <p class="subtitle">From startup websites to enterprise AI systems, we find vulnerabilities before attackers do. Fast audits, honest findings, actionable recommendations.</p>
                 
                 <div class="cta-buttons">
-                    <button class="btn-primary" onclick="switchTab('contact')">Request Audit</button>
-                    <button class="btn-secondary" onclick="switchTab('about')">Learn About Us</button>
+                    <button class="btn-primary" onclick="switchTab('products')">See All Offerings</button>
+                    <button class="btn-secondary" onclick="switchTab('contact')">Get Started</button>
                 </div>
 
                 <div class="hero-stats">
@@ -847,6 +861,71 @@
                         <li>Parameter manipulation</li>
                         <li>Chain attack simulation</li>
                     </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRODUCTS TAB -->
+    <div id="products" class="tab-content">
+        <div class="container">
+            <h2>Our Services</h2>
+            
+            <div style="margin-bottom: 100px;">
+                <h3 style="margin-top: 0; margin-bottom: 15px;">PromptGuard - Enterprise AI Security Audits</h3>
+                <p style="margin-bottom: 40px; color: #666;">Specialized red-team testing for conversational AI, autonomous agents, RAG systems, and custom LLM implementations.</p>
+                
+                <div class="grid-3">
+                    <div class="pricing-card">
+                        <div class="price-tier">Quick Assessment</div>
+                        <div class="price">$500</div>
+                        <div class="price-desc">For basic validation</div>
+                        <ul class="pricing-features"><li>10+ test vectors</li><li>Focused vulnerability scan</li><li>Basic report</li><li>24-hour turnaround</li></ul>
+                        <button class="btn-primary" onclick="switchTab('contact')" style="width: 100%;">Request</button>
+                    </div>
+                    <div class="pricing-card featured">
+                        <div class="price-tier">Standard Audit</div>
+                        <div class="price">$2,500</div>
+                        <div class="price-desc">Most popular</div>
+                        <ul class="pricing-features"><li>30+ test vectors</li><li>Full attack surface testing</li><li>Detailed report with PoCs</li><li>CVSS scoring</li><li>Remediation roadmap</li><li>40-hour assessment</li></ul>
+                        <button class="btn-primary" onclick="switchTab('contact')" style="width: 100%;">Request</button>
+                    </div>
+                    <div class="pricing-card">
+                        <div class="price-tier">Comprehensive Review</div>
+                        <div class="price">$7,500</div>
+                        <div class="price-desc">Mission-critical systems</div>
+                        <ul class="pricing-features"><li>50+ test vectors</li><li>Multi-model testing</li><li>Integration deep-dive</li><li>Architecture recommendations</li><li>Post-remediation testing</li><li>60+ hour assessment</li></ul>
+                        <button class="btn-primary" onclick="switchTab('contact')" style="width: 100%;">Request</button>
+                    </div>
+                </div>
+            </div>
+
+            <div style="border-top: 2px solid #e0e0e0; padding-top: 60px;">
+                <h3 style="margin-top: 0; margin-bottom: 15px;">SiteCheck - Website Security Reviews</h3>
+                <p style="margin-bottom: 40px; color: #666;">Fast, affordable security audits for small businesses. Honest assessments of WordPress, e-commerce, and web applications. No FUD, just actionable findings.</p>
+                
+                <div class="grid-3">
+                    <div class="pricing-card">
+                        <div class="price-tier">Quick Review</div>
+                        <div class="price">$99</div>
+                        <div class="price-desc">Fast initial scan</div>
+                        <ul class="pricing-features"><li>Basic security checkup</li><li>Common vulns scan</li><li>Simple findings</li><li>1-2 day turnaround</li><li>Email summary</li></ul>
+                        <button class="btn-primary" onclick="switchTab('contact')" style="width: 100%;">Order</button>
+                    </div>
+                    <div class="pricing-card featured">
+                        <div class="price-tier">Full Assessment</div>
+                        <div class="price">$250</div>
+                        <div class="price-desc">Complete review</div>
+                        <ul class="pricing-features"><li>Comprehensive security audit</li><li>REST API testing</li><li>Form & input validation</li><li>Detailed findings report</li><li>Remediation guidance</li><li>2-5 day turnaround</li></ul>
+                        <button class="btn-primary" onclick="switchTab('contact')" style="width: 100%;">Order</button>
+                    </div>
+                    <div class="pricing-card">
+                        <div class="price-tier">Monthly Monitoring</div>
+                        <div class="price">$49<span style="font-size: 14px; color: #666;">/mo</span></div>
+                        <div class="price-desc">Ongoing security</div>
+                        <ul class="pricing-features"><li>Monthly security reviews</li><li>Vulnerability rescans</li><li>Configuration audits</li><li>Email alerts on changes</li><li>Priority support</li></ul>
+                        <button class="btn-primary" onclick="switchTab('contact')" style="width: 100%;">Subscribe</button>
+                    </div>
                 </div>
             </div>
         </div>
