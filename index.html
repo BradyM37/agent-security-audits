@@ -1493,28 +1493,28 @@ RESULT: Model hangs, times out, or crashes</div>
                 if (pgFields) pgFields.style.display = 'block';
                 if (scFields) scFields.style.display = 'none';
                 if (scopeSelect) {
-                    scopeSelect.innerHTML = 
+                    scopeSelect.innerHTML = `
                         <option value="">Select a tier</option>
-                        <option value="quick">Quick Assessment ()</option>
-                        <option value="standard">Standard Audit (,500)</option>
-                        <option value="comprehensive">Comprehensive Review (,500)</option>
-                    ;
+                        <option value="quick">Quick Assessment ($500)</option>
+                        <option value="standard">Standard Audit ($2,500)</option>
+                        <option value="comprehensive">Comprehensive Review ($7,500)</option>
+                    `;
                 }
             } else if (service === 'sitecheck') {
                 if (pgFields) pgFields.style.display = 'none';
                 if (scFields) scFields.style.display = 'block';
                 if (scopeSelect) {
-                    scopeSelect.innerHTML = 
+                    scopeSelect.innerHTML = `
                         <option value="">Select a tier</option>
-                        <option value="quick-review">Quick Review ()</option>
-                        <option value="full-assessment">Full Assessment ()</option>
-                        <option value="monitoring">Monthly Monitoring (/mo)</option>
-                    ;
+                        <option value="quick-review">Quick Review ($99)</option>
+                        <option value="full-assessment">Full Assessment ($250)</option>
+                        <option value="monitoring">Monthly Monitoring ($49/mo)</option>
+                    `;
                 }
             } else {
                 if (pgFields) pgFields.style.display = 'none';
                 if (scFields) scFields.style.display = 'none';
-                if (scopeSelect) scopeSelect.innerHTML = <option value="">Select a tier</option>;
+                if (scopeSelect) scopeSelect.innerHTML = `<option value="">Select a tier</option>`;
             }
         }
 
