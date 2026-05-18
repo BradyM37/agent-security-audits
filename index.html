@@ -1482,6 +1482,42 @@ RESULT: Model hangs, times out, or crashes</div>
             }
         }
 
+        // Handle conditional form fields and dynamic pricing
+        function updateFormFields() {
+            const service = document.getElementById('service').value;
+            const pgFields = document.getElementById('promptguard-fields');
+            const scFields = document.getElementById('sitecheck-fields');
+            const scopeSelect = document.getElementById('scope');
+            
+            if (service === 'promptguard') {
+                if (pgFields) pgFields.style.display = 'block';
+                if (scFields) scFields.style.display = 'none';
+                if (scopeSelect) {
+                    scopeSelect.innerHTML = 
+                        <option value="">Select a tier</option>
+                        <option value="quick">Quick Assessment ()</option>
+                        <option value="standard">Standard Audit (,500)</option>
+                        <option value="comprehensive">Comprehensive Review (,500)</option>
+                    ;
+                }
+            } else if (service === 'sitecheck') {
+                if (pgFields) pgFields.style.display = 'none';
+                if (scFields) scFields.style.display = 'block';
+                if (scopeSelect) {
+                    scopeSelect.innerHTML = 
+                        <option value="">Select a tier</option>
+                        <option value="quick-review">Quick Review ()</option>
+                        <option value="full-assessment">Full Assessment ()</option>
+                        <option value="monitoring">Monthly Monitoring (/mo)</option>
+                    ;
+                }
+            } else {
+                if (pgFields) pgFields.style.display = 'none';
+                if (scFields) scFields.style.display = 'none';
+                if (scopeSelect) scopeSelect.innerHTML = <option value="">Select a tier</option>;
+            }
+        }
+
         // Setup form handler on page load
         document.addEventListener('DOMContentLoaded', function() {
             // Check for payment return
@@ -1499,8 +1535,11 @@ RESULT: Model hangs, times out, or crashes</div>
                 name: formData.get('name'),
                 email: formData.get('email'),
                 company: formData.get('company'),
+                service: formData.get('service'),
                 system: formData.get('system'),
                 description: formData.get('description'),
+                website: formData.get('website'),
+                websiteDescription: formData.get('website-description'),
                 scope: formData.get('scope')
             };
 
@@ -1510,7 +1549,10 @@ RESULT: Model hangs, times out, or crashes</div>
             const scopePrices = {
                 'quick': '500',
                 'standard': '2500',
-                'comprehensive': '7500'
+                'comprehensive': '7500',
+                'quick-review': '99',
+                'full-assessment': '250',
+                'monitoring': '4900'
             };
 
             const amount = scopePrices[data.scope] || '500';
@@ -1549,6 +1591,9 @@ RESULT: Model hangs, times out, or crashes</div>
 </body>
 
 </html>
+
+
+
 
 
 
