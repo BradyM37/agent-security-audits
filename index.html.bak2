@@ -1324,8 +1324,8 @@ RESULT: Model hangs, times out, or crashes</div>
             <h3 style="text-align: center; margin-bottom: 30px;">Start Your Security Audit</h3>
             
             <div style="text-align: center; margin-bottom: 40px;">
-                <a href="https://calendly.com/promptguardsupport/30min" target="_blank" class="btn-secondary" style="padding: 15px 35px; font-size: 16px; display: inline-block;">?? Schedule Consultation (Free)</a>
-                <p style="color: #666; font-size: 14px; margin-top: 12px;">Talk to us first � no pressure, just advice</p>
+                <a href="https://calendly.com/promptguardsupport/30min" target="_blank" class="btn-secondary" style="padding: 15px 35px; font-size: 16px; display: inline-block;">📅 Schedule Consultation (Free)</a>
+                <p style="color: #666; font-size: 14px; margin-top: 12px;">Talk to us first — no pressure, just advice</p>
             </div>
             
             <div style="max-width: 700px; margin: 0 auto;">
@@ -1354,13 +1354,13 @@ RESULT: Model hangs, times out, or crashes</div>
                     </div>
 
                     <div class="form-group">
-                        <label for="company">Company / Business Name</label>
+                        <label for="company">Company</label>
                         <input type="text" id="company" name="company" required>
                     </div>
 
                     <div class="form-group">
                         <label for="system">AI System Type</label>
-                        <select id="system" name="system">
+                        <select id="system" name="system" required>
                             <option value="">Select your system type</option>
                             <option value="chatbot">Chatbot / Conversational AI</option>
                             <option value="agent">Autonomous Agent</option>
@@ -1373,11 +1373,11 @@ RESULT: Model hangs, times out, or crashes</div>
 
                     <div class="form-group">
                         <label for="description">Tell us about your system</label>
-                        <textarea id="description" name="description" placeholder="What does your AI system do? What data does it access? Any specific concerns?"></textarea>
+                        <textarea id="description" name="description" placeholder="What does your AI system do? What data does it access? Any specific concerns?" required></textarea>
                     </div>
 
                     <div class="form-group">
-                        <label for="scope">Service Tier</label>
+                        <label for="scope">Audit Scope</label>
                         <select id="scope" name="scope" required>
                             <option value="">Select an audit tier</option>
                             <option value="quick">Quick Assessment ($500)</option>
@@ -1541,16 +1541,3 @@ RESULT: Model hangs, times out, or crashes</div>
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
