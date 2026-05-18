@@ -1303,7 +1303,7 @@ RESULT: Model hangs, times out, or crashes</div>
         </div>
     </div>
 
-    <!-- CONTACT TAB -->
+        <!-- CONTACT TAB -->
     <div id="contact" class="tab-content">
         <div class="container">
             <h2>Get Started</h2>
@@ -1321,16 +1321,11 @@ RESULT: Model hangs, times out, or crashes</div>
                 </div>
             </div>
 
-            <h3 style="text-align: center; margin-bottom: 30px;">Start Your Security Audit</h3>
-            
-            <div style="text-align: center; margin-bottom: 40px;">
-                <a href="https://calendly.com/promptguardsupport/30min" target="_blank" class="btn-secondary" style="padding: 15px 35px; font-size: 16px; display: inline-block;">?? Schedule Consultation (Free)</a>
-                <p style="color: #666; font-size: 14px; margin-top: 12px;">Talk to us first � no pressure, just advice</p>
-            </div>
+            <h3 style="text-align: center; margin-bottom: 30px;">Submit Your Audit Request</h3>
             
             <div style="max-width: 700px; margin: 0 auto;">
                 <div id="success-message" style="display: none; padding: 20px; background: #e8f5e9; border-left: 4px solid #4caf50; border-radius: 4px; color: #2e7d32; margin-bottom: 30px;">
-                    <strong>✓ Payment successful!</strong> Your audit request has been received. We'll begin testing immediately. You'll receive your detailed report within 40 hours for Standard Audits (48 hours for Comprehensive).
+                    <strong>✓ Payment successful!</strong> Your audit request has been received. We'll be in touch shortly to discuss your security audit.
                 </div>
 
                 <form id="audit-form" name="audit" netlify>
@@ -1358,31 +1353,44 @@ RESULT: Model hangs, times out, or crashes</div>
                         <input type="text" id="company" name="company" required>
                     </div>
 
-                    <div class="form-group">
-                        <label for="system">AI System Type</label>
-                        <select id="system" name="system">
-                            <option value="">Select your system type</option>
-                            <option value="chatbot">Chatbot / Conversational AI</option>
-                            <option value="agent">Autonomous Agent</option>
-                            <option value="rag">RAG System (Retrieval-Augmented)</option>
-                            <option value="custom">Custom LLM Implementation</option>
-                            <option value="multi">Multi-Model System</option>
-                            <option value="other">Other</option>
-                        </select>
+                    <!-- PromptGuard Only Fields -->
+                    <div id="promptguard-fields" style="display: none;">
+                        <div class="form-group">
+                            <label for="system">AI System Type</label>
+                            <select id="system" name="system">
+                                <option value="">Select your system type</option>
+                                <option value="chatbot">Chatbot / Conversational AI</option>
+                                <option value="agent">Autonomous Agent</option>
+                                <option value="rag">RAG System (Retrieval-Augmented)</option>
+                                <option value="custom">Custom LLM Implementation</option>
+                                <option value="multi">Multi-Model System</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Tell us about your system</label>
+                            <textarea id="description" name="description" placeholder="What does your AI system do? What data does it access? Any specific concerns?"></textarea>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="description">Tell us about your system</label>
-                        <textarea id="description" name="description" placeholder="What does your AI system do? What data does it access? Any specific concerns?"></textarea>
+                    <!-- SiteCheck Only Fields -->
+                    <div id="sitecheck-fields" style="display: none;">
+                        <div class="form-group">
+                            <label for="website">Website URL</label>
+                            <input type="url" id="website" name="website" placeholder="https://example.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="website-description">Website Type</label>
+                            <textarea id="website-description" name="website-description" placeholder="WordPress? WooCommerce? Custom site? Tell us what to look for..."></textarea>
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="scope">Service Tier</label>
                         <select id="scope" name="scope" required>
-                            <option value="">Select an audit tier</option>
-                            <option value="quick">Quick Assessment ($500)</option>
-                            <option value="standard">Standard Audit ($2,500)</option>
-                            <option value="comprehensive">Comprehensive Review ($7,500)</option>
+                            <option value="">Select a tier</option>
                         </select>
                     </div>
 
@@ -1541,6 +1549,8 @@ RESULT: Model hangs, times out, or crashes</div>
 </body>
 
 </html>
+
+
 
 
 
